@@ -1,4 +1,5 @@
-# Raw data, figures and jupyter notebooks for CrCl2(pyrimidine) DOI: 10.1021/jacs.2c10916
+# Raw data, figures and jupyter notebooks for CrCl2(pyrimidine) 
+DOI: 10.1021/jacs.2c10916
 
 ## Heat capcity (HC)
   - "HC_Cavendish_CrCl2pym_Rx.ipynb": jupyter notebook file for the processing and plotting of variable temperature heat capacity dataset.
