@@ -1,0 +1,94 @@
+
+'--------------------------------------------------------------
+'Input File for simple Rietveld Refinement
+'Use save/set current button then run with F6 in topas
+'Replace $ and # symbols with text/numbers as needed
+'--------------------------------------------------------------
+
+r_wp  10.1954671 r_exp  8.236418 r_p  7.79961516 r_wp_dash  29.5200915 r_p_dash  35.4163688 r_exp_dash  23.8478347 weighted_Durbin_Watson  0.724705696 gof  1.23785207
+
+'--------------------------------------------------------------
+'General information about refinement here
+'Remove comments as required
+'--------------------------------------------------------------
+
+iters 100000
+chi2_convergence_criteria 0.001
+'do_errors
+
+'--------------------------------------------------------------
+'Information on datafile etc here
+'Check that default weighting is appropriate for your data
+'--------------------------------------------------------------
+xdd PXRD_CrCl2pym_raw.xy
+	x_calculation_step = Yobs_dx_at(Xo); convolution_step 4
+	bkg @  109.651566`  2.4500074` -24.2327989`  18.3184135` -17.3188398`  7.71389901` -1.62087473` -3.44742574`  3.50147052`
+	'd5000 Ge(111) monochromator Capillary Braun PSD Cu Ka1
+	LP_Factor(!th2_monochromator, 27.26)
+	CuKa1(0.0001)
+	Specimen_Displacement(height,-0.07703`)
+
+'--------------------------------------------------------------
+'Information on structure
+'Type in phase/space group/cell etc
+'Comment in/out sections as needed
+'--------------------------------------------------------------
+
+
+
+'--------------------------------------------------------------
+'Information on structure
+'Type in phase/space group/cell etc
+'Comment in/out sections as needed
+'--------------------------------------------------------------
+	str
+		a @  3.717906`
+		b @  12.130493`
+		c @  7.115903`
+		al 90
+		be @  94.36430`
+		ga 90
+		volume  319.997`
+		prm b_all=1;:  1.00000`
+		site Cr01   x 0.5           y 0.5           z 0.5           occ Cr   1.000000   beq 0.971169073
+		site Cl02   x 0.03873       y 0.42403       z 0.27982       occ Cl   1.000000   beq 1.19224821
+		site N003   x 0.4850        y 0.65196       z 0.3450        occ N    1.000000   beq 1.12118706
+		site C004   x 0.4680        y 0.75          z 0.4308        occ C    1.000000   beq 1.18435253
+		site H004   x 0.4424        y 0.75          z 0.5608        occ H    1.000000   beq 1.42122303
+		site C005   x 0.5391        y 0.75          z 0.0557        occ C    1.000000   beq 1.27120505
+		site H005   x 0.5629        y 0.75          z -0.0745       occ H    1.000000   beq 1.50017987
+		site C006   x 0.5207        y 0.65282       z 0.1558        occ C    1.000000   beq 1.46070145
+		site H006   x 0.5332        y 0.58599       z 0.0916        occ H    1.000000   beq 1.73705037
+		space_group "P121/m1"
+		scale @  0.00017571858`
+		r_bragg  4.43120897
+		TCHZ_Peak_Type(pku,-0.09631`,pkv,  0.12582`,pkw, -0.01602`,!pkz, 0.0000,pky, 0.16358`,!pkx, 0.0000)
+		Simple_Axial_Model(axial, 7.12527`)
+		Phase_Density_g_on_cm3( 2.10673`)
+
+
+		xdd_out PXRD_CrCl2pym_riet.dat load out_record out_fmt out_eqn
+{
+       " %11.5f  " = X;
+       " %11.5f  " = Yobs;
+       " %11.5f  " = Ycalc;
+       " %11.5f\n" = Yobs-Ycalc;
+   }
+
+
+		 out  PXRD_CrCl2pym_rug_marks.dat
+      Out_String("\tHKL reflection markers:\n")
+
+      for strs {
+        phase_out  P16289_2-60_30minx3_huxira_rug_marks.dat  load out_record out_fmt out_eqn
+        {
+           " %3.0f" = H;
+           " %3.0f" = K;
+           " %3.0f" = L;
+           " %3.0f" = M;
+            " %11.5f"   = 2* Pi/D_spacing;
+           " %11.5f"   = D_spacing;
+           " %11.5f\n"   = 2 Rad Th;
+        }
+      }
+   }
